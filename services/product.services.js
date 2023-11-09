@@ -1,6 +1,5 @@
 const cuid = require('cuid');
 const ProductModel = require("../models/productModel");
-
 const getProductsService = async () => {
   try {
     const products = await ProductModel.find();
@@ -19,7 +18,6 @@ const getProductsService = async () => {
   }
 }
 const createProcuctService = async (product) => {
- 
   try {
     const _product = await ProductModel.create(product);
     return {data: [_product], error: false, message: "sucesso", statusCode: 200}
@@ -32,13 +30,10 @@ const createProcuctService = async (product) => {
     }
   }
 }
-const updateProductReaction = async (productId, userId) =>{
+const updateProductReaction = async (productId, newProduct) =>{
   try {
-    const product = await ProductModel.findByIdAndUpdate(
-      productId,
-      // {$push: { inventoryStatus: userId, preco: userId}},
-      // {new: true}
-    )
+    console.log(newProduct)
+    const product = await ProductModel.findByIdAndUpdate(productId, newProduct, { new: true })
     return {data: [product], error: false, message: "sucesso", statusCode: 200}
   } catch (error) {
     return {
@@ -60,7 +55,6 @@ const createNotification = ({productId, authorId, userId}) => {
     },
   };
 };
-
 module.exports = {
   getProductsService,
   createProcuctService,

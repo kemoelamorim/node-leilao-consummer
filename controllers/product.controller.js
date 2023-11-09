@@ -13,7 +13,6 @@ const getProductsController = async (req, res) => {
   res.status(result.statusCode).json(result);
 }
 const createProductController = async (req, res) => {
-  
   const body = req.body
   const result = await createProcuctService(body);
   res.status(result.statusCode).json(result)
